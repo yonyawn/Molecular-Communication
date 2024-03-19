@@ -36,8 +36,8 @@ public class Molecule {
         }
     }
 
-    public void move() {
-        location = location.randomAdjacentLocation();
+    public void move(double timeStep) {
+        location = location.randomAdjacentLocation(timeStep);
         setCellLocation();
     }
 }

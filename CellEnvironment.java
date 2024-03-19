@@ -4,7 +4,7 @@ import java.util.List;
 public class CellEnvironment {
     private static List<CellEnvironment> instances = new ArrayList<>();
 
-    private ArrayList<Molecule> molecules = new ArrayList<>();
+    protected ArrayList<Molecule> molecules = new ArrayList<>();
     private int molConcentration;
 
     private Location location;
@@ -60,5 +60,9 @@ public class CellEnvironment {
         double distance = this.location.distanceTo(location);
         System.out.println(distance);
         return Math.abs(distance - diameter / 2) < 0.00001;
+    }
+
+    public void action() {
+        
     }
 }

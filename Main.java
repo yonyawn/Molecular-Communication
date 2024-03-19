@@ -1,6 +1,5 @@
 public class Main {
     public static void main(String[] args) {
-        
         // Create a new molecule at location (15, 10)
         Location location = new Location(15, 10);
         Molecule molecule = new Molecule(location);
@@ -27,17 +26,15 @@ public class Main {
         System.out.println("Extracellular concentration:" + simEnvironment.getExtraConc());
         System.out.println("Is molecule on cell border?:" + molecule.isOnCellBorder());
         System.out.println("Is molecule in cell?:" + molecule.isInCell());
-
+        
         // simulate the environment 10 times and check the extracellular concentration, 
         // if the molecule is on the cell border and if the molecule is in the cell while the cell moves
-        int x = 0;
-        while (x < 10) {
-            simEnvironment.simulate();
-            simEnvironment.setExtraConc();
-            System.out.println("Extracellular concentration:" + simEnvironment.getExtraConc());
-            System.out.println("Is molecule on cell border?:" + molecule.isOnCellBorder());
-            System.out.println("Is molecule in cell?:" + molecule.isInCell());
-            x++;
+        double time = 0;
+        double endTime = 20;
+        double timestep = 0.2;
+        while (time < endTime) {
+            simEnvironment.simulate(timestep);
+            time += timestep;
         }
     }
 }

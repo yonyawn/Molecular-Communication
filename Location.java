@@ -1,35 +1,39 @@
-public class Location {
-    private int x;
-    private int y;
+import java.util.Random;
 
-    public Location(int x, int y) {
+public class Location {
+    private double x;
+    private double y;
+
+    public Location(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public Location randomAdjacentLocation() {
-        int x = getX();
-        int y = getY();
-        int newX;
-        int newY;
+    public Location randomAdjacentLocation(double timeStep) {
+        Random rand = new Random();
+        double x = getX();
+        double y = getY();
+        double newX;
+        double newY;
+        double dc = 1;
         do {
-            newX = x + ((int) (Math.random() * 3)) - 1;
-            newY = y + ((int) (Math.random() * 3)) - 1;
+            newX = x + rand.nextGaussian() * 2 * dc * timeStep;
+            newY = y + rand.nextGaussian() * 2 * dc * timeStep;
         } while (newX < 0 || newX >= SimEnvironment.WIDTH || newY < 0 || newY >= SimEnvironment.HEIGHT);
         return new Location(newX, newY);
     }
 
     public double distanceTo(Location location) {
-        int xDiff = x - location.getX();
-        int yDiff = y - location.getY();
+        double xDiff = x - location.getX();
+        double yDiff = y - location.getY();
         return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
     }
 }

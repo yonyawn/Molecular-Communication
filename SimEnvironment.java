@@ -10,9 +10,17 @@ public class SimEnvironment {
     
     private int extraConc;
 
-    public void simulate() {
+    public SimEnvironment() {
+        extraConc = 0;
+    }
+
+    public void simulate(double timeStep) {
         for (Molecule molecule : molecules) {
-            molecule.move();
+            molecule.move(timeStep);
+        }
+    
+        for (CellEnvironment cell : cells) {
+            cell.action();
         }
     }
 
